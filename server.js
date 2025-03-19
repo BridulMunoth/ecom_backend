@@ -7,8 +7,21 @@ const cartRoutes = require('./routes/cartRoutes'); // Ensure the file exists and
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors(
+    {
+        origin: function (origin, callback) {
+          if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+          } else {
+            callback(new Error("Not allowed by CORS"));
+          }
+        },
+        credentials: true, // Allows cookies and authentication headers if needed
+        }
+));
+
 app.use(express.json());
+
 
 // Connect to the database
 connectDB();
