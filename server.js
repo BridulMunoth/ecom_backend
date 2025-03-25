@@ -17,7 +17,7 @@ app.use(cors(
           }
         },
         credentials: true, // Allows cookies and authentication headers if needed
-        }
+    }
 ));
 
 app.use(express.json());
